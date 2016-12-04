@@ -35,8 +35,10 @@ class BaseWebhookEvent(object):
         self.tls = self.data.get('tls')
         self.cert_error = self.data.get('cert_error')
 
-        self.category = self.data['category']
-
+        try:
+	    self.category = self.data['category']
+	except:
+	    pass
         self.unique_arguments = self.extract_unique_params(self.data)
 
     @classmethod

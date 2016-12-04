@@ -24,8 +24,10 @@ class BaseDeliveryEvent(BaseWebhookEvent):
     """
     def __init__(self, request, data):
         super(BaseDeliveryEvent, self).__init__(request, data)
-        self.smtp_id = self.data['smtp-id']
-
+        try:
+	    self.smtp_id = self.data['smtp-id']
+	except:
+	    pass
 
 class BounceEvent(BaseDeliveryEvent):
     def __init__(self, request, data):
